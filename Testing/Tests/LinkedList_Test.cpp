@@ -124,6 +124,7 @@ TEST(LinkedList, CountDecreasesWhenANodeIsRemoved)
    LinkedListNode_t node1;
    LinkedListNode_t node2;
    LinkedListNode_t node3;
+   LinkedListNode_t node4;
 
    LinkedList_Init(&instance);
    LinkedList_PushFront(&instance, &node);
@@ -131,18 +132,28 @@ TEST(LinkedList, CountDecreasesWhenANodeIsRemoved)
    LinkedList_PushFront(&instance, &node2);
    LinkedList_PushFront(&instance, &node3);
    CHECK(4 == LinkedList_Count(&instance));
-   LinkedList_RemoveNodeFromTheList(&instance, &node2);
+   LinkedList_RemoveNodeIfIsInList(&instance, &node2);
    CHECK(3 == LinkedList_Count(&instance));
 }
-#if(0)
+
 TEST(LinkedList, CanRemoveNodeThatIsntInList)
 {
    LinkedListNode_t node;
+   LinkedListNode_t node1;
+   LinkedListNode_t node2;
+   LinkedListNode_t node3;
+   LinkedListNode_t node4;
 
    LinkedList_Init(&instance);
-   LinkedList_Remove(&instance, &node);
+   LinkedList_PushFront(&instance, &node);
+   LinkedList_PushFront(&instance, &node1);
+   LinkedList_PushFront(&instance, &node2);
+   LinkedList_PushFront(&instance, &node3);
+   CHECK(4 == LinkedList_Count(&instance));
+   LinkedList_RemoveNodeIfIsInList(&instance, &node4);
+   CHECK(4 == LinkedList_Count(&instance));
 }
-
+#if(0)
 IGNORE_TEST(LinkedList, CannotAddNodeThatIsAlreadyInTheList)
 {
    LinkedListNode_t node;

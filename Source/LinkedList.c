@@ -71,7 +71,7 @@ LinkedListNode_t *LinkedList_PopFrontRemoves(LinkedList_t *instance)
     return firstElement;
 }
 
-void LinkedList_RemoveNodeFromTheList(LinkedList_t *instance, LinkedListNode_t *nodeToDelete)
+void LinkedList_RemoveNodeIfIsInList(LinkedList_t *instance, LinkedListNode_t *nodeToDelete)
 {
     LinkedListNode_t *listElement = instance->head;
 
@@ -82,10 +82,13 @@ void LinkedList_RemoveNodeFromTheList(LinkedList_t *instance, LinkedListNode_t *
     }
     else
     {
-       while(listElement->next != nodeToDelete)
+       while(listElement->next != nodeToDelete && listElement->next != NULL)
        {
          listElement = listElement->next;
        } 
-       listElement->next = listElement->next->next;
+       if(listElement->next != NULL)
+       {
+           listElement->next = listElement->next->next;
+       }
     }  
 }
