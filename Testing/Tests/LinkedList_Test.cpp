@@ -124,7 +124,6 @@ TEST(LinkedList, CountDecreasesWhenANodeIsRemoved)
    LinkedListNode_t node1;
    LinkedListNode_t node2;
    LinkedListNode_t node3;
-   LinkedListNode_t node4;
 
    LinkedList_Init(&instance);
    LinkedList_PushFront(&instance, &node);
@@ -153,24 +152,51 @@ TEST(LinkedList, CanRemoveNodeThatIsntInList)
    LinkedList_RemoveNodeIfIsInList(&instance, &node4);
    CHECK(4 == LinkedList_Count(&instance));
 }
-#if(0)
-IGNORE_TEST(LinkedList, CannotAddNodeThatIsAlreadyInTheList)
+/*
+TEST(LinkedList, CannotAddNodeThatIsAlreadyInTheList)
 {
    LinkedListNode_t node;
+   LinkedListNode_t node1;
 
    LinkedList_Init(&instance);
    LinkedList_PushFront(&instance, &node);
+   LinkedList_PushBack(&instance, &node1);
    CHECK_ASSERTION_FAILED(LinkedList_PushFront(&instance, &node));
    CHECK_ASSERTION_FAILED(LinkedList_PushBack(&instance, &node));
 }
-
+*/
 TEST(LinkedList, CountIsUpdatedCorrectlyAfterAddingMultipleNodes)
 {
+   LinkedListNode_t node;
+   LinkedListNode_t node1;
+   LinkedListNode_t node2;
+   LinkedListNode_t node3;
+   LinkedListNode_t node4;
 
+   LinkedList_Init(&instance);
+   LinkedList_PushFront(&instance, &node);
+   LinkedList_PushFront(&instance, &node1);
+   LinkedList_PushBack(&instance, &node2);
+   LinkedList_PushFront(&instance, &node3);
+   LinkedList_PushFront(&instance, &node4);
+   CHECK(5 == LinkedList_Count(&instance));
 }
 
 TEST(LinkedList, CanGetTheNodeAtAnIndex)
 {
+   LinkedListNode_t node;
+   LinkedListNode_t node1;
+   LinkedListNode_t node2;
+   LinkedListNode_t node3;
+   LinkedListNode_t node4;
+   uint16_t index = 3;
 
+   LinkedList_Init(&instance);
+   LinkedList_PushFront(&instance, &node);
+   LinkedList_PushFront(&instance, &node1);
+   LinkedList_PushBack(&instance, &node2);
+   LinkedList_PushFront(&instance, &node3);
+   LinkedList_PushFront(&instance, &node4);
+   CHECK(&node == LinkedList_GetTheNodeAtAnIndex(&instance, index)); 
 }
-#endif
+

@@ -25,10 +25,10 @@ uint16_t LinkedList_Count(LinkedList_t *instance)
     return length;
 }
 
-void LinkedList_PushFront(LinkedList_t *instance, LinkedListNode_t *node)
+void LinkedList_PushFront(LinkedList_t *instance, LinkedListNode_t *nodeToAdd)
 {
-    node->next = instance->head;
-    instance->head = node;
+    nodeToAdd->next = instance->head;
+    instance->head = nodeToAdd;
 }
 
 void LinkedList_PushBack(LinkedList_t *instance, LinkedListNode_t *node)
@@ -91,4 +91,14 @@ void LinkedList_RemoveNodeIfIsInList(LinkedList_t *instance, LinkedListNode_t *n
            listElement->next = listElement->next->next;
        }
     }  
+}
+
+LinkedListNode_t *LinkedList_GetTheNodeAtAnIndex(LinkedList_t * instance, uint16_t index)
+{
+   LinkedListNode_t *node = instance->head;
+   for(int i = 0; i < index; i++)
+   {
+       node = node->next;
+   }
+   return node; 
 }
