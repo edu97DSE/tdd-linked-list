@@ -17,6 +17,12 @@ typedef struct
 } LinkedList_t;
 
 void LinkedList_Init(LinkedList_t *instance);
+uint16_t LinkedList_Count(LinkedList_t *instance);
+void LinkedList_PushFront(LinkedList_t *instance, LinkedListNode_t *node);
+void LinkedList_PushBack(LinkedList_t *instance, LinkedListNode_t *node);
+LinkedListNode_t *LinkedList_PopBackRemoves(LinkedList_t *instance);
+LinkedListNode_t *LinkedList_PopFrontRemoves(LinkedList_t *instance);
+void LinkedList_RemoveNodeFromTheList(LinkedList_t *instance, LinkedListNode_t *nodeToDelete);
 
 // TODO
 // Count -- Get the number of elements in the list

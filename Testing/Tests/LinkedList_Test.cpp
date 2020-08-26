@@ -18,6 +18,8 @@ TEST_GROUP(LinkedList)
 
    void setup()
    {
+      //LinkedList_Init(&instance);
+
    }
 
    void teardown()
@@ -25,12 +27,12 @@ TEST_GROUP(LinkedList)
    }
 };
 
-TEST(LinkedList, MyFirstTest)
-{
-   FAIL("My first test is running!");
-}
+// TEST(LinkedList, MyFirstTest)
+// {
+//    FAIL("My first test is running!");
+// }
 
-#if(0)
+
 TEST(LinkedList, EmptyAfterInit)
 {
    LinkedList_Init(&instance);
@@ -50,34 +52,89 @@ TEST(LinkedList, CountIncreasesAfterPushFront)
 
 TEST(LinkedList, CountIncreasesAfterPushBack)
 {
+   LinkedListNode_t node;
 
+   LinkedList_Init(&instance);
+   LinkedList_PushBack(&instance, &node);
+
+   CHECK(1 == LinkedList_Count(&instance));
 }
 
 TEST(LinkedList, PopBackRemovesAndReturnsTheLastElementInTheList)
 {
-
+   LinkedListNode_t node;
+   LinkedListNode_t node1;
+   LinkedListNode_t node2;
+   
+   LinkedList_Init(&instance);
+   LinkedList_PushFront(&instance, &node);
+   LinkedList_PushFront(&instance, &node1);
+   LinkedList_PushFront(&instance, &node2);
+   CHECK(3 == LinkedList_Count(&instance));
+   CHECK(&node == LinkedList_PopBackRemoves(&instance));
+   CHECK(2 == LinkedList_Count(&instance));
 }
 
 TEST(LinkedList, PopFrontRemovesAndReturnsTheFirstElementInTheList)
 {
-
+   LinkedListNode_t node;
+   LinkedListNode_t node1;
+   LinkedListNode_t node2;
+   
+   LinkedList_Init(&instance);
+   LinkedList_PushFront(&instance, &node);
+   LinkedList_PushFront(&instance, &node1);
+   LinkedList_PushFront(&instance, &node2);
+   CHECK(&node2 == LinkedList_PopFrontRemoves(&instance));
 }
 
 TEST(LinkedList, CountDecreasesWhenAnElementIsPoppedFromTheFrontOfAList)
 {
-
+   LinkedListNode_t node;
+   LinkedListNode_t node1;
+   LinkedListNode_t node2;
+   
+   LinkedList_Init(&instance);
+   LinkedList_PushFront(&instance, &node);
+   LinkedList_PushFront(&instance, &node1);
+   LinkedList_PushFront(&instance, &node2);
+   CHECK(3 == LinkedList_Count(&instance));
+   CHECK(&node2 == LinkedList_PopFrontRemoves(&instance));
+   CHECK(2 == LinkedList_Count(&instance));
 }
 
 TEST(LinkedList, CountDecreasesWhenAnElementIsPoppedFromTheBackOfAList)
 {
-
+   LinkedListNode_t node;
+   LinkedListNode_t node1;
+   LinkedListNode_t node2;
+   
+   LinkedList_Init(&instance);
+   LinkedList_PushFront(&instance, &node);
+   LinkedList_PushFront(&instance, &node1);
+   LinkedList_PushBack(&instance, &node2);
+   CHECK(3 == LinkedList_Count(&instance));
+   CHECK(&node2 == LinkedList_PopBackRemoves(&instance));
+   CHECK(2 == LinkedList_Count(&instance));
 }
 
 TEST(LinkedList, CountDecreasesWhenANodeIsRemoved)
 {
+   LinkedListNode_t node;
+   LinkedListNode_t node1;
+   LinkedListNode_t node2;
+   LinkedListNode_t node3;
 
+   LinkedList_Init(&instance);
+   LinkedList_PushFront(&instance, &node);
+   LinkedList_PushFront(&instance, &node1);
+   LinkedList_PushFront(&instance, &node2);
+   LinkedList_PushFront(&instance, &node3);
+   CHECK(4 == LinkedList_Count(&instance));
+   LinkedList_RemoveNodeFromTheList(&instance, &node2);
+   CHECK(3 == LinkedList_Count(&instance));
 }
-
+#if(0)
 TEST(LinkedList, CanRemoveNodeThatIsntInList)
 {
    LinkedListNode_t node;
