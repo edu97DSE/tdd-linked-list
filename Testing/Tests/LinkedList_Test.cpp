@@ -18,7 +18,6 @@ TEST_GROUP(LinkedList)
 
    void setup()
    {
-      //LinkedList_Init(&instance);
 
    }
 
@@ -178,7 +177,7 @@ TEST(LinkedList, CountIsUpdatedCorrectlyAfterAddingMultipleNodes)
    LinkedList_PushFront(&instance, &node1);
    LinkedList_PushBack(&instance, &node2);
    LinkedList_PushFront(&instance, &node3);
-   LinkedList_PushFront(&instance, &node4);
+   LinkedList_PushBack(&instance, &node4);
    CHECK(5 == LinkedList_Count(&instance));
 }
 
@@ -194,9 +193,9 @@ TEST(LinkedList, CanGetTheNodeAtAnIndex)
    LinkedList_Init(&instance);
    LinkedList_PushFront(&instance, &node);
    LinkedList_PushFront(&instance, &node1);
-   LinkedList_PushBack(&instance, &node2);
+   LinkedList_PushFront(&instance, &node2);
    LinkedList_PushFront(&instance, &node3);
    LinkedList_PushFront(&instance, &node4);
-   CHECK(&node == LinkedList_GetTheNodeAtAnIndex(&instance, index)); 
+   CHECK(&node1 == LinkedList_GetTheNodeAtAnIndex(&instance, index)); 
 }
 

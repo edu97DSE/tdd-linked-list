@@ -17,14 +17,14 @@ void LinkedList_Init(LinkedList_t *instance)
 uint16_t LinkedList_Count(LinkedList_t *instance)
 {
     LinkedListNode_t *node = instance->head;
-    uint16_t length = 0;
+    uint16_t listLength = 0;
 
     while (node != NULL)
     {
         node = node->next;
-        length++;
+        listLength++;
     }
-    return length;
+    return listLength;
 }
 
 static bool LinkedList_VerifyIfNodeIsInList(LinkedList_t *instance, LinkedListNode_t *nodeToFind)
