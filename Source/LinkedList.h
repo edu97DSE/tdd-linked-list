@@ -19,7 +19,7 @@ typedef struct
 void LinkedList_Init(LinkedList_t *instance);
 uint16_t LinkedList_Count(LinkedList_t *instance);
 void LinkedList_PushFront(LinkedList_t *instance, LinkedListNode_t *nodeToAdd);
-void LinkedList_PushBack(LinkedList_t *instance, LinkedListNode_t *node);
+void LinkedList_PushBack(LinkedList_t *instance, LinkedListNode_t *nodeToAdd);
 LinkedListNode_t *LinkedList_PopBackRemoves(LinkedList_t *instance);
 LinkedListNode_t *LinkedList_PopFrontRemoves(LinkedList_t *instance);
 void LinkedList_RemoveNodeIfIsInList(LinkedList_t *instance, LinkedListNode_t *nodeToDelete);

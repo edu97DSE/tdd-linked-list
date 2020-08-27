@@ -152,7 +152,7 @@ TEST(LinkedList, CanRemoveNodeThatIsntInList)
    LinkedList_RemoveNodeIfIsInList(&instance, &node4);
    CHECK(4 == LinkedList_Count(&instance));
 }
-/*
+
 TEST(LinkedList, CannotAddNodeThatIsAlreadyInTheList)
 {
    LinkedListNode_t node;
@@ -162,9 +162,9 @@ TEST(LinkedList, CannotAddNodeThatIsAlreadyInTheList)
    LinkedList_PushFront(&instance, &node);
    LinkedList_PushBack(&instance, &node1);
    CHECK_ASSERTION_FAILED(LinkedList_PushFront(&instance, &node));
-   CHECK_ASSERTION_FAILED(LinkedList_PushBack(&instance, &node));
+   CHECK_ASSERTION_FAILED(LinkedList_PushBack(&instance, &node1));
 }
-*/
+
 TEST(LinkedList, CountIsUpdatedCorrectlyAfterAddingMultipleNodes)
 {
    LinkedListNode_t node;

@@ -37,7 +37,8 @@ SRC_DIRS += \
 	Source/
 
 TEST_SRC_DIRS += \
-	Testing/Tests/
+    Testing/Tests/ \
+    Testing/Utilities
 
 INCLUDE_DIRS += \
 	$(SRC_DIRS) \

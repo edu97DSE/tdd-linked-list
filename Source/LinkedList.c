@@ -5,7 +5,9 @@
 
 #include "stdio.h"
 #include "stdlib.h"
+#include "stdbool.h"
 #include "LinkedList.h"
+#include "uassert.h"
 
 void LinkedList_Init(LinkedList_t *instance)
 {
@@ -25,41 +27,76 @@ uint16_t LinkedList_Count(LinkedList_t *instance)
     return length;
 }
 
-void LinkedList_PushFront(LinkedList_t *instance, LinkedListNode_t *nodeToAdd)
+static bool LinkedList_VerifyIfNodeIsInList(LinkedList_t *instance, LinkedListNode_t *nodeToFind)
 {
-    nodeToAdd->next = instance->head;
-    instance->head = nodeToAdd;
+    LinkedListNode_t *listElement = instance->head;
+    bool flagNodeAlreadyExist = false;
+
+    if(instance->head == nodeToFind->next)
+    {
+        flagNodeAlreadyExist = true;
+    }
+    while(listElement->next != nodeToFind->next && listElement->next != NULL)
+    {
+        listElement = listElement->next;
+    } 
+    if(listElement->next == nodeToFind->next)
+    {
+        flagNodeAlreadyExist = true;
+    }
+    return flagNodeAlreadyExist;
 }
 
-void LinkedList_PushBack(LinkedList_t *instance, LinkedListNode_t *node)
+void LinkedList_PushFront(LinkedList_t *instance, LinkedListNode_t *nodeToAdd)
 {
-    LinkedListNode_t *address = instance->head;
-    if (instance->head == NULL)
+    if(!LinkedList_VerifyIfNodeIsInList(&instance, &nodeToAdd))
     {
-        node->next = instance->head;
-        instance->head = node;
+        nodeToAdd->next = instance->head;
+        instance->head = nodeToAdd;
     }
     else
     {
-        node->next = NULL;
-        while (address->next != NULL)
+        uassert(false);
+    } 
+}
+
+void LinkedList_PushBack(LinkedList_t *instance, LinkedListNode_t *nodeToAdd)
+{
+    LinkedListNode_t *listElement = instance->head;
+    
+    if(!LinkedList_VerifyIfNodeIsInList(&instance, &nodeToAdd))
+    {
+        if(instance->head == NULL)
         {
-            address = address->next;
+            nodeToAdd->next = instance->head;
+            instance->head = nodeToAdd;
         }
-        address->next = node;
+        else
+        {
+            nodeToAdd->next = NULL;
+            while(listElement->next != NULL)
+            {
+                listElement = listElement->next;
+            }
+            listElement->next = nodeToAdd;
+        }
+    }
+    else
+    {
+        uassert(false);
     }
 }
 
 LinkedListNode_t *LinkedList_PopBackRemoves(LinkedList_t *instance)
 {
-    LinkedListNode_t *node = instance->head;
+    LinkedListNode_t *nodeToRemove = instance->head;
     LinkedListNode_t *lastElement;
-    while(node->next->next != NULL)
+    while(nodeToRemove->next->next != NULL)
     {
-        node = node->next;
+        nodeToRemove = nodeToRemove->next;
     }
-    lastElement = node->next;
-    node->next = NULL;
+    lastElement = nodeToRemove->next;
+    nodeToRemove->next = NULL;
     return lastElement;
 }
 
